@@ -1,0 +1,46 @@
+<%-include('../partial/header')-%>
+ <section class="section wb">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                <div class="page-wrapper">
+                    <div class="blog-title-area">
+                        <span class="color-green"><a href="garden-category.html" title=""><%=data[0].tag%></a></span>
+
+                        <h3><%=data[0].title%></h3>
+
+                        <div class="blog-meta big-meta">
+                            <small><a href="#" title=""><%=data[0].createdAt.toLocaleString()%></a></small>
+                            <small><a href="#" title=""><%=data[0].author%></a></small>
+                            <small><a href="#" title=""><i class="fa fa-eye"></i><%=data[0].views%></a></small>
+                        </div><!-- end meta -->
+
+                        <div class="post-sharing">
+                            <ul class="list-inline">
+                                <li><a href="#" class="fb-button btn btn-primary"><i class="fa fa-facebook"></i> <span class="down-mobile">Share on Facebook</span></a></li>
+                                <li><a href="#" class="tw-button btn btn-primary"><i class="fa fa-twitter"></i> <span class="down-mobile">Tweet on Twitter</span></a></li>
+                                <li><a href="#" class="gp-button btn btn-primary"><i class="fa fa-google-plus"></i></a></li>
+                            </ul>
+                        </div><!-- end post-sharing -->
+                    </div><!-- end title -->
+
+                    <div class="single-post-media">
+                        <img src="/upload/garden_single_01.jpg" alt="" class="img-fluid">
+                    </div><!-- end media -->
+
+                    <div class="blog-content">  
+                        <div class="pp">
+                             <p><%=data[0].content%></p>
+                        </div><!-- end pp -->
+
+                    </div><!-- end content -->
+
+                    <hr class="invis1">
+
+                </div><!-- end page-wrapper -->
+            </div><!-- end col -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section>
+
+<%-include('../partial/footer')-%>

@@ -1,0 +1,34 @@
+<%-include("../partial/header")-%>
+<%if(data.length>0){%>
+<div class="text-center" style="margin-bottom:20px;">
+    <form action="/blog/edit" method="post" enctype="multipart/form-data">
+         <div class="form-group row">
+           <label for="title" class="col-sm-2 col-form-label col-form-label-lg">Title</label>
+           <div class="col-sm-7">
+            <textarea name="title" rows="1" cols="10" class="form-control form-control-lg" required><%=data[0].title%></textarea>
+            </div>
+         </div>
+         <div class="form-group row">
+            <label for="file" class="col-sm-2 col-form-label col-form-label-lg">Image</label>
+            <div class="col-sm-7">
+     <input type="file" class="form-control form-control-lg" name="file" placeholder="col-form-label-lg" required>
+             </div>
+         </div>
+         <div class="form-group row">
+           <label for="content" class="col-sm-2 col-form-label col-form-label-lg">Content</label>
+           <div class="col-sm-7">
+               <textarea name="content" rows="10" cols="10" class="form-control form-control-lg" required><%=data[0].content%></textarea>
+            </div>
+         </div>
+         <div class="form-group row">
+          <label for="tag" class="col-sm-2 col-form-label col-form-label-lg">Tags</label>
+          <div class="col-sm-7">
+              <textarea name="tag" rows="1" cols="10" class="form-control form-control-lg" required><%=data[0].tag%></textarea>
+           </div>
+        </div>
+         <input type="hidden" name="id" value="<%=data[0]._id%>"> 
+         <div class="text-center"><button type="submit" class="btn btn-success btn-lg">Submit</button></div>
+    </form>
+</div>
+<%}%>
+<%-include("../partial/footer")-%>

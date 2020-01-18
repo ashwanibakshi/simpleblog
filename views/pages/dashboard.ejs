@@ -1,0 +1,81 @@
+<%-include("../partial/header")-%>
+<div style="margin-top:25px; width:auto; margin-left: 15%;margin-bottom:25px;"  class="text-center">
+    <table class="table table-hover table-responsive table-stripped">
+          <thead>
+              <th>
+                s.no
+              </th>
+              <th>
+                  title
+              </th>
+              <th>
+                  author
+              </th>
+              <th>
+                  views
+              </th>
+              <th>
+                  tags
+              </th>
+              <th>
+                  created
+              </th>
+              <th>
+                  updated
+              </th>
+              <th>
+                  edit/delete
+              </th>
+          </thead>
+          <tbody>
+              <%for(var a=0;a< data.length;a++){%>
+                <tr>
+                    <td><%=a+1%></td>
+                    <td><%=data[a].title%></td>
+                    <td><%=data[a].author%></td>
+                    <td><%=data[a].views%></td>
+                    <td><%= data[a].tag%></td>
+                    <td><%if(data[a].createdAt!=undefined){%><%=data[a].createdAt.toLocaleString()%><%}%></td>
+                    <td><%if(data[a].updatedAt!=undefined){%><%=data[a].updatedAt.toLocaleString()%><%}%></td>
+                    <td>
+                    <a href="/blog/edit/<%=data[a]._id%>"><span class="btn btn-sm bg-primary">edit</span></a>
+                    <a href="/blog/delete/<%=data[a]._id%>"><span class="btn">delete</span></a>
+                    </td>
+                </tr>
+              <%}%>  
+          </tbody>
+    </table>
+    <%if(pages){%>
+    <div class="text-center">
+        <% if (pages > 0) { %>
+        <ul class="pagination">
+          <% if (current == 1) { %>
+            <li class="page-item disabled"><a class="page-link">First</a></li>
+        <% } else { %>
+            <li><a class="page-link" href="/blog/dashboard/?page=1">First</a></li>
+        <% } %>
+        <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+        <% if (i !== 1) { %>
+            <li class="page-item disabled"><a>...</a></li>
+        <% } %>
+        <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+            <% if (i == current) { %>
+                <li class="page-item active"><a class="page-link"><%= i %></a></li>
+            <% } else { %>
+                <li><a class="page-link" href="/blog/dashboard/?page=<%= i %>"><%= i %></a></li>
+            <% } %>
+            <% if (i == Number(current) + 4 && i < pages) { %>
+                <li class="page-item disabled"><a class="page-link">...</a></li>
+            <% } %>
+        <% } %>
+        <% if (current == pages) { %>
+            <li class="page-item disabled"><a class="page-link">Last</a></li>
+        <% } else { %>
+            <li><a class="page-link" href="/blog/dashboard/?page=<%= pages %>">Last</a></li>
+        <% } %>
+        </ul>
+        <% } %>
+      </div>
+      <%}%>
+</div>
+<%-include("../partial/footer")-%>

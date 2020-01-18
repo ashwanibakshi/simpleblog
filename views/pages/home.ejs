@@ -1,0 +1,138 @@
+<%-include("../partial/header")-%>
+
+<section class="section first-section">
+    <div class="container-fluid">
+        <div class="masonry-blog clearfix">
+            <%if(data[0]){%>
+            <div class="left-side">
+                <div class="masonry-box post-media">
+                     <img src="<%=data[0].image%>" alt="" class="img-fluid" style="height:290px;">
+                     <div class="shadoweffect">
+                        <div class="shadow-desc">
+                            <div class="blog-meta">
+                                <span class="bg-aqua"><a href="blog-category-01.html" title=""><%=data[0].tag%></a></span>
+                                <h4><a href="garden-single.html" title=""><%=data[0].title%></a></h4>
+                                <small><a href="garden-single.html" title=""><%=data[0].createdAt.toLocaleString()%></a></small>
+                                <small><a href="#" title=""><%=data[0].author%></a></small>
+                            </div><!-- end meta -->
+                        </div><!-- end shadow-desc -->
+                    </div><!-- end shadow -->
+                </div><!-- end post-media -->
+            </div><!-- end left-side -->
+           <%}%>
+           <%if(data[1]){%>
+            <div class="center-side">
+                <div class="masonry-box post-media">
+                     <img src="<%=data[1].image%>" alt="" class="img-fluid" style="height:290px;">
+                     <div class="shadoweffect">
+                        <div class="shadow-desc">
+                            <div class="blog-meta">
+                                <span class="bg-aqua"><a href="blog-category-01.html" title=""><%=data[1].tag%></a></span>
+                                <h4><a href="garden-single.html" title=""><%=data[1].title%></a></h4>
+                                <small><a href="garden-single.html" title=""><%=data[1].createdAt.toLocaleString()%></a></small>
+                                <small><a href="#" title=""><%=data[1].author%></a></small>
+                            </div><!-- end meta -->
+                        </div><!-- end shadow-desc -->
+                    </div><!-- end shadow -->
+                </div><!-- end post-media -->
+            </div><!-- end left-side -->
+            <%}%>
+            <%if(data[2]){%>
+            <div class="right-side hidden-md-down">
+                <div class="masonry-box post-media">
+                     <img src="<%=data[2].image%>"  alt="" class="img-fluid" style="height:290px;">
+                     <div class="shadoweffect">
+                        <div class="shadow-desc">
+                            <div class="blog-meta">
+                                <span class="bg-aqua"><a href="#" title=""><%=data[2].tag%></a></span>
+                                <h4><a href="#" title=""><%=data[2].title%></a></h4>
+                                <small><a href="#" title=""><%=data[2].createdAt.toLocaleString()%></a></small>
+                                <small><a href="#" title=""><%=data[2].author%></a></small>
+                            </div><!-- end meta -->
+                        </div><!-- end shadow-desc -->
+                     </div><!-- end shadow -->
+                </div><!-- end post-media -->
+            </div><!-- end right-side -->
+            <%}%>
+        </div><!-- end masonry -->
+    </div>
+</section>
+
+<section class="section wb">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                <div class="page-wrapper">
+                    <div class="blog-list clearfix">
+                        <%for(var a=0;a < pagee.length;a++){%>
+                        <div class="blog-box row">
+                            <div class="col-md-4">
+                                <div class="post-media">
+                                    <a href="#" title="">
+                                        <img src="<%= pagee[a].image%>" alt="" class="img-fluid">
+                                        <div class="hovereffect"></div>
+                                    </a>
+                                </div><!-- end media -->
+                            </div><!-- end col -->
+
+                            <div class="blog-meta big-meta col-md-8">
+                                <span class="bg-aqua"><a href="#" title=""><%=pagee[a].tag%></a></span>
+                                <h4><a href="/blog/viewarticle/<%=pagee[a]._id%>" title=""><%=pagee[a].title%></a></h4>
+                                <!-- <p>Aenean interdum arcu blandit, vehicula magna non, placerat elit. Mauris et pharetratortor. Suspendissea sodales urna. In at augue elit. Vivamus enim nibh, maximus ac felis nec, maximus tempor odio.</p> -->
+                                <small><a href="#" title=""><i class="fa fa-eye"></i><%=pagee[a].views%></a></small>
+                                <small><a href="#" title=""><%= pagee[a].createdAt.toLocaleString()%></a></small>
+                                <small><a href="#" title=""><%=pagee[a].author%></a></small>
+                            </div><!-- end meta -->
+                        </div><!-- end blog-box -->
+
+                        <hr class="invis">
+                        <%}%>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- <nav aria-label="Page navigation"> -->
+                            <!-- <ul class="pagination justify-content-start">
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">Next</a>
+                                </li>
+                            </ul> -->
+                            <% if (pages > 0) { %>
+                                <ul class="pagination justify-content-start">
+                                  <% if (current == 1) { %>
+                                    <li class="page-item disabled"><a class="page-link">First</a></li>
+                                <% } else { %>
+                                    <li><a class="page-link" href="/blog/home/?page=1">First</a></li>
+                                <% } %>
+                                <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+                                <% if (i !== 1) { %>
+                                    <li class="page-item disabled"><a>...</a></li>
+                                <% } %>
+                                <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+                                    <% if (i == current) { %>
+                                        <li class="page-item active"><a class="page-link"><%= i %></a></li>
+                                    <% } else { %>
+                                        <li><a class="page-link" href="/blog/home/?page=<%= i %>"><%= i %></a></li>
+                                    <% } %>
+                                    <% if (i == Number(current) + 4 && i < pages) { %>
+                                        <li class="page-item disabled"><a class="page-link">...</a></li>
+                                    <% } %>
+                                <% } %>
+                                <% if (current == pages) { %>
+                                    <li class="page-item disabled"><a class="page-link">Last</a></li>
+                                <% } else { %>
+                                    <li><a class="page-link" href="/blog/home/?page=<%= pages %>">Last</a></li>
+                                <% } %>
+                                </ul>
+                                <% } %>
+                        <!-- </nav> -->
+                    </div><!-- end col -->
+                </div><!-- end row -->
+            </div><!-- end col -->
+            
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section>
+<%-include("../partial/footer")-%>
